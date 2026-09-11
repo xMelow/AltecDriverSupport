@@ -1,6 +1,6 @@
 using Wpf.Ui.Controls;
 
-namespace AltecPrintSupport.App.Views;
+namespace AltecDriverSupport.App.Views;
 
 /// <summary>
 /// Interaction logic for MainWindow.xaml

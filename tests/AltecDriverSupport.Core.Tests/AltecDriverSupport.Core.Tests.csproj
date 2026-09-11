@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\AltecPrintSupport.Core\AltecPrintSupport.Core.csproj" />
+    <ProjectReference Include="..\..\src\AltecDriverSupport.Core\AltecDriverSupport.Core.csproj" />
   </ItemGroup>
 
 </Project>

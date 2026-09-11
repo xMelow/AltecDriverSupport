@@ -17,15 +17,15 @@ the label. See `docs/architecture.md` for the full roadmap and reasoning.
 
 ```
 src/
-  AltecPrintSupport.Core/    class library, no UI references
+  AltecDriverSupport.Core/    class library, no UI references
     Printing/                phantom print-queue management
     Drivers/                 driver inventory & introspection
     NiceLabel/               client for the separate NiceLabelApi service
-  AltecPrintSupport.App/     WPF + WPF-UI desktop app
+  AltecDriverSupport.App/     WPF + WPF-UI desktop app
     Views/                   XAML views
     ViewModels/              MVVM (CommunityToolkit.Mvvm)
 tests/
-  AltecPrintSupport.Core.Tests/
+  AltecDriverSupport.Core.Tests/
 tools/                       working PowerShell prototypes (see tools/README.md)
 docs/                        architecture notes
 ```
@@ -40,7 +40,7 @@ docs/                        architecture notes
 
 ```bash
 dotnet build
-dotnet run --project src/AltecPrintSupport.App
+dotnet run --project src/AltecDriverSupport.App
 ```
 
 ## Tests

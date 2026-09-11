@@ -1,7 +1,7 @@
 # tools/
 
 Working PowerShell prototypes, kept as reference and as a usable fallback
-while the equivalent C# lands in `AltecPrintSupport.Core`.
+while the equivalent C# lands in `AltecDriverSupport.Core`.
 
 - **PhantomPrinter.ps1** / **PhantomPrinter.cmd** — create/remove phantom
   print queues (working v1 of the feature `Core/Printing/IPhantomPrinterService`

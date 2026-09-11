@@ -1,6 +1,6 @@
 using System.Net.Http.Json;
 
-namespace AltecPrintSupport.Core.NiceLabel;
+namespace AltecDriverSupport.Core.NiceLabel;
 
 /// <summary>
 /// Thin HTTP client for the existing AltecTools NiceLabelApi service (.NET

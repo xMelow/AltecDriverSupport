@@ -1,4 +1,4 @@
-namespace AltecPrintSupport.Core.Printing;
+namespace AltecDriverSupport.Core.Printing;
 
 /// <summary>
 /// Creates and removes "phantom" print queues: local queues bound to a real,
@@ -12,7 +12,7 @@ namespace AltecPrintSupport.Core.Printing;
 public interface IPhantomPrinterService
 {
     /// <summary>Comment string stamped on every queue this service creates.</summary>
-    const string PhantomComment = "PHANTOM (AltecPrintSupport)";
+    const string PhantomComment = "PHANTOM (AltecDriverSupport)";
 
     /// <summary>Lists every driver currently installed on this machine.</summary>
     IReadOnlyList<InstalledDriver> GetInstalledDrivers();

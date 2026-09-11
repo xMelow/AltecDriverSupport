@@ -1,6 +1,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace AltecPrintSupport.App.ViewModels;
+namespace AltecDriverSupport.App.ViewModels;
 
 /// <summary>
 /// Root view model. Placeholder until the first real feature (Phantom

@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/AltecDriverSupport.App/AltecDriverSupport.App.csproj" />
+    <Project Path="src/AltecDriverSupport.Core/AltecDriverSupport.Core.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/AltecDriverSupport.Core.Tests/AltecDriverSupport.Core.Tests.csproj" />
+  </Folder>
+</Solution>

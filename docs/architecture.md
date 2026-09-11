@@ -2,17 +2,17 @@
 
 ## Why this shape
 
-`AltecPrintSupport.Core` has **no UI references**. Every real operation —
+`AltecDriverSupport.Core` has **no UI references**. Every real operation —
 printer/port/driver manipulation, driver introspection, talking to the
-NiceLabel API — lives there as plain, testable C#. `AltecPrintSupport.App`
+NiceLabel API — lives there as plain, testable C#. `AltecDriverSupport.App`
 is a thin WPF-UI shell that binds to it. If the UI ever needs to change
 (different framework, a web front end, a CLI), the engine doesn't move.
 
 ```
-AltecPrintSupport.App (WPF, WPF-UI, net10.0-windows)
+AltecDriverSupport.App (WPF, WPF-UI, net10.0-windows)
         │  references
         ▼
-AltecPrintSupport.Core (net10.0-windows, no UI deps)
+AltecDriverSupport.Core (net10.0-windows, no UI deps)
     ├─ Printing/   phantom-printer queue management
     ├─ Drivers/    driver inventory & introspection (WMI, registry, Authenticode)
     └─ NiceLabel/  HTTP client for the separate NiceLabelApi service

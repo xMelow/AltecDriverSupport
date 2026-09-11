@@ -1,9 +1,0 @@
-<Solution>
-  <Folder Name="/src/">
-    <Project Path="src/AltecPrintSupport.App/AltecPrintSupport.App.csproj" />
-    <Project Path="src/AltecPrintSupport.Core/AltecPrintSupport.Core.csproj" />
-  </Folder>
-  <Folder Name="/tests/">
-    <Project Path="tests/AltecPrintSupport.Core.Tests/AltecPrintSupport.Core.Tests.csproj" />
-  </Folder>
-</Solution>

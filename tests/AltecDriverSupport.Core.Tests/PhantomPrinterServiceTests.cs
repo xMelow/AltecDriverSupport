@@ -1,6 +1,6 @@
-using AltecPrintSupport.Core.Printing;
+using AltecDriverSupport.Core.Printing;
 
-namespace AltecPrintSupport.Core.Tests;
+namespace AltecDriverSupport.Core.Tests;
 
 /// <summary>
 /// Placeholder proving the test project references Core correctly. Real
@@ -14,8 +14,6 @@ public class PhantomPrinterServiceTests
     [Fact]
     public void PhantomComment_IsStableAndDistinctive()
     {
-        // Guards the tag CreatePhantom/RemoveAllPhantoms rely on to tell a
-        // phantom queue apart from a real, physical printer.
-        Assert.Equal("PHANTOM (AltecPrintSupport)", IPhantomPrinterService.PhantomComment);
+        Assert.Equal("PHANTOM (AltecDriverSupport)", IPhantomPrinterService.PhantomComment);
     }
 }

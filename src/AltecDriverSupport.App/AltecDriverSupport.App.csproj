@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\AltecPrintSupport.Core\AltecPrintSupport.Core.csproj" />
+    <ProjectReference Include="..\AltecDriverSupport.Core\AltecDriverSupport.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

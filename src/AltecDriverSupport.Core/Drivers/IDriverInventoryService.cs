@@ -1,4 +1,4 @@
-namespace AltecPrintSupport.Core.Drivers;
+namespace AltecDriverSupport.Core.Drivers;
 
 /// <summary>
 /// Read-only introspection of installed print drivers: spooler metadata,
@@ -32,6 +32,6 @@ public sealed record DriverDetails(
 
 public sealed record SignatureInfo(
     string Status,
-    string SignatureType,     // "Catalog" or "Embedded"
+    string SignatureType,     // "Catalog" or "Embedded" --> change to enum?
     string? SignerSubject,
     DateTime? NotAfter);
