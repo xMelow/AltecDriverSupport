@@ -1,0 +1,40 @@
+<ui:FluentWindow x:Class="AltecPrintSupport.App.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AltecPrintSupport.App.Views"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        mc:Ignorable="d"
+        Title="Altec Print Support" Height="600" Width="900"
+        ExtendsContentIntoTitleBar="True"
+        WindowBackdropType="Mica"
+        WindowStartupLocation="CenterScreen">
+
+    <ui:FluentWindow.Resources>
+        <Style TargetType="{x:Type ui:FluentWindow}" BasedOn="{StaticResource {x:Type Window}}" />
+    </ui:FluentWindow.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <ui:TitleBar Title="Altec Print Support" Grid.Row="0" />
+
+        <!-- Placeholder shell. First real feature to land here: the Phantom
+             Printer view (create/remove queues, driver picker) - see
+             ViewModels/PhantomPrinterViewModel and
+             AltecPrintSupport.Core.Printing.IPhantomPrinterService. -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="24" MaxWidth="640" HorizontalAlignment="Left">
+                <ui:TextBlock Text="Altec Print Support" FontTypography="TitleLarge" />
+                <ui:TextBlock Text="Printer, driver and NiceLabel diagnostics for support."
+                              FontTypography="Body" Opacity="0.7" Margin="0,4,0,20" />
+                <ui:InfoBar Title="Scaffold" Message="Views land here as features are built, starting with Phantom Printer."
+                            IsOpen="True" Severity="Informational" />
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</ui:FluentWindow>

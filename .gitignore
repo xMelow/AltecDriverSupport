@@ -1,0 +1,35 @@
+## .NET / Visual Studio / Rider
+bin/
+obj/
+*.user
+.vs/
+.vscode/
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Rider
+.idea/
+
+## Test / coverage results
+[Tt]est[Rr]esult*/
+*.trx
+coverage*.json
+coverage*.xml
+coverage*.info
+
+## Publish output
+publish/
+*.pubxml.user
+
+## NuGet
+*.nupkg
+**/packages/*
+!**/packages/build/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+## OS cruft
+Thumbs.db
+.DS_Store
