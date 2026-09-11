@@ -10,5 +10,5 @@ namespace AltecPrintSupport.App.ViewModels;
 public partial class MainViewModel : ObservableObject
 {
     [ObservableProperty]
-    private string _title = "Altec Print Support";
+    private string _title = "Altec Driver Support";
 }

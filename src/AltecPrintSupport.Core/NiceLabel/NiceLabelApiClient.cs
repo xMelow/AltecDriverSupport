@@ -30,10 +30,10 @@ public interface INiceLabelApiClient
     Task<LabelInfo> GetLabelInfoAsync(string labelFilePath, CancellationToken ct = default);
 }
 
-/// <summary>Mirrors NiceLabel.SDK.ILabelSettings for the fields we actually need.</summary>
 public sealed record LabelInfo(
     string OriginalPrinterName,
     string OriginalPrinterDriver,
-    int WidthThousandthsMm,   // ILabelSettings.Width: "label width in 0.001mm units"
-    int HeightThousandthsMm,  // ILabelSettings.Height: same units
-    IReadOnlyList<string> ConversionIssues);
+    int Width,
+    int Height,
+    IReadOnlyList<string> ConversionIssues
+);

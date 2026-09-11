@@ -32,8 +32,8 @@ docs/                        architecture notes
 
 ## Requirements
 
-- .NET 8 SDK
-- Windows (this is a Windows-only, `net8.0-windows` solution - print spooler,
+- .NET 10 SDK
+- Windows (this is a Windows-only, `net10.0-windows` solution - print spooler,
   registry, WMI)
 
 ## Build & run

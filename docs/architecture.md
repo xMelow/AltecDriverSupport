@@ -9,10 +9,10 @@ is a thin WPF-UI shell that binds to it. If the UI ever needs to change
 (different framework, a web front end, a CLI), the engine doesn't move.
 
 ```
-AltecPrintSupport.App (WPF, WPF-UI, net8.0-windows)
+AltecPrintSupport.App (WPF, WPF-UI, net10.0-windows)
         │  references
         ▼
-AltecPrintSupport.Core (net8.0-windows, no UI deps)
+AltecPrintSupport.Core (net10.0-windows, no UI deps)
     ├─ Printing/   phantom-printer queue management
     ├─ Drivers/    driver inventory & introspection (WMI, registry, Authenticode)
     └─ NiceLabel/  HTTP client for the separate NiceLabelApi service
