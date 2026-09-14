@@ -17,7 +17,39 @@ public class PhantomPrinterServiceTests
         Assert.Equal("PHANTOM (AltecDriverSupport)", IPhantomPrinterService.PhantomComment);
     }
 
-    
+    [Fact]
+    public void CreatePhantom_AddsPrinter_WhenDriverIsInstalled()
+    {
+        FakeSpooler spooler = new FakeSpooler();
+        PhantomPrinterService phantomService = new PhantomPrinterService(spooler);
+        spooler.Drivers.Add(new InstalledDriver("driver", "SomeProvider", "SomeManufacturer", 3, "Windows x64"));
+
+        phantomService.CreatePhantom("Test", "driver");
+
+        Assert.Contains(phantomService.GetPhantomPrinters(), item => item.Name == "Test");
+    }
+
+    [Fact]
+    public void CreatePhantom_Throws_WhenNameCollidesWithRealPrinter()
+    {
+        FakeSpooler spooler = new FakeSpooler();
+        PhantomPrinterService phantomService = new PhantomPrinterService(spooler);
+        spooler.Drivers.Add(new InstalledDriver("driver", "SomeProvider", "SomeManufacturer", 3, "Windows x64"));
+        spooler.Printers.Add(new SpoolerPrinter("Test printer", "driver", "altec port", ""));
+
+        Assert.Throws<InvalidOperationException>(() => phantomService.CreatePhantom("Test printer", "driver"));
+    }
+
+    [Fact]
+    public void CreatePhantom_Throws_WhenNameCollidesWithPhantomPrinter()
+    {
+        FakeSpooler spooler = new FakeSpooler();
+        PhantomPrinterService phantomService = new PhantomPrinterService(spooler);
+        spooler.Drivers.Add(new InstalledDriver("driver", "SomeProvider", "SomeManufacturer", 3, "Windows x64"));
+        spooler.Printers.Add(new SpoolerPrinter("Phantom printer", "driver", "altec port", IPhantomPrinterService.PhantomComment));
+
+        Assert.Throws<InvalidOperationException>(() => phantomService.CreatePhantom("Phantom printer", "driver"));
+    }
 
     private sealed class FakeSpooler : IWin32PrintSpooler
     {
