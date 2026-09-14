@@ -21,6 +21,9 @@ public sealed class PhantomPrinterService : IPhantomPrinterService
 
     public PhantomPrinter CreatePhantom(string printerName, string driverName)
     {
+        ArgumentException.ThrowIfNullOrWhiteSpace(printerName);
+        ArgumentException.ThrowIfNullOrWhiteSpace(driverName);
+
         var existing = _spooler.EnumPrinters()
             .FirstOrDefault(p => string.Equals(p.Name, printerName, StringComparison.OrdinalIgnoreCase));
 
@@ -28,7 +31,7 @@ public sealed class PhantomPrinterService : IPhantomPrinterService
         {
             throw existing.Comment == IPhantomPrinterService.PhantomComment
                 ? new InvalidOperationException($"A phantom named '{printerName}' already exists.")
-                : new InvalidOperationException($"'{printerName}' already exists as a REAL printer.");
+                : new InvalidOperationException($"'{printerName}' already exists as a printer.");
         }
 
         var driverInstalled = _spooler.EnumDrivers()
