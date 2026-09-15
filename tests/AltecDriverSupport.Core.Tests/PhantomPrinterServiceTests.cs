@@ -57,6 +57,42 @@ public class PhantomPrinterServiceTests
         Assert.Throws<InvalidOperationException>(() => _service.CreatePhantom("Phantom printer", "driver"));
     }
 
+    [Theory]
+    [InlineData("")]
+    [InlineData(" ")]
+    public void CreatePhantom_Throws_WhenPrinterNameIsBlank(string blankName)
+    {
+        _spooler.Drivers.Add(new InstalledDriver("driver", "SomeProvider", "SomeManufacturer", 3, "Windows x64"));
+
+        Assert.Throws<ArgumentException>(() => _service.CreatePhantom(blankName, "driver"));
+    }
+
+    [Theory]
+    [InlineData("")]
+    [InlineData(" ")]
+    public void CreatePhantom_Throws_WhenDriverNameIsBlank(string blankName)
+    {
+        _spooler.Drivers.Add(new InstalledDriver("driver", "SomeProvider", "SomeManufacturer", 3, "Windows x64"));
+
+        Assert.Throws<ArgumentException>(() => _service.CreatePhantom("phantom printer", blankName));
+    }
+
+    [Fact]
+    public void CreatePhantom_Throws_WhenPrinterNameIsNull()
+    {
+        _spooler.Drivers.Add(new InstalledDriver("driver", "SomeProvider", "SomeManufacturer", 3, "Windows x64"));
+
+        Assert.Throws<ArgumentNullException>(() => _service.CreatePhantom(null!, "driver"));
+    }
+
+    [Fact]
+    public void CreatePhantom_Throws_WhenDriverNameIsNull()
+    {
+        _spooler.Drivers.Add(new InstalledDriver("driver", "SomeProvider", "SomeManufacturer", 3, "Windows x64"));
+
+        Assert.Throws<ArgumentNullException>(() => _service.CreatePhantom("phantom printer", null!));
+    }
+
     [Fact]
     public void RemovePhantom_RemovesQueue_WhenItIsAPhantom()
     {
@@ -75,6 +111,23 @@ public class PhantomPrinterServiceTests
     }
 
     [Fact]
+    public void RemovePhantom_OnlyDeletesPort_WhenNoOtherPhantomUsesIt()
+    {
+        _spooler.Drivers.Add(new InstalledDriver("driver", "SomeProvider", "SomeManufacturer", 3, "Windows x64"));
+        _spooler.Printers.Add(new SpoolerPrinter("Phantom printer", "driver", "altec port", IPhantomPrinterService.PhantomComment));
+        _spooler.Printers.Add(new SpoolerPrinter("Phantom printer 2", "driver", "altec port", IPhantomPrinterService.PhantomComment));
+        _spooler.Ports.Add("altec port");
+
+        _service.RemovePhantom("Phantom printer");
+
+        Assert.Contains(_spooler.Ports, p => p == "altec port");
+
+        _service.RemovePhantom("Phantom printer 2");
+
+        Assert.Empty(_spooler.Ports);
+    }
+
+    [Fact]
     public void RemoveAllPhantom_RemovesQueue_WhenItIsAPhantom()
     {
         _spooler.Drivers.Add(new InstalledDriver("driver", "SomeProvider", "SomeManufacturer", 3, "Windows x64"));
@@ -88,6 +141,43 @@ public class PhantomPrinterServiceTests
         Assert.Equal(2, removedCount);
     }
 
+    [Fact]
+    public void RemoveAllPhantoms_ReturnsZero_WhenThereAreNoPhantoms()
+    {
+        _spooler.Drivers.Add(new InstalledDriver("driver", "SomeProvider", "SomeManufacturer", 3, "Windows x64"));
+        _spooler.Printers.Add(new SpoolerPrinter("printer", "driver", "USB", "Desktop printer"));
+
+        var removedCount = _service.RemoveAllPhantoms();
+
+        Assert.Equal(0, removedCount);
+    }
+
+    [Fact]
+    public void RemoveAllPhantoms_RemovesPorts_WhenAllPhantomPrintersCleared()
+    {
+        _spooler.Drivers.Add(new InstalledDriver("driver", "SomeProvider", "SomeManufacturer", 3, "Windows x64"));
+        _spooler.Printers.Add(new SpoolerPrinter("Phantom printer", "driver", "altec port", IPhantomPrinterService.PhantomComment));
+        _spooler.Printers.Add(new SpoolerPrinter("Phantom printer 2", "driver", "altec port", IPhantomPrinterService.PhantomComment));
+        _spooler.Ports.Add("altec port");
+
+        var removedCount = _service.RemoveAllPhantoms();
+
+        Assert.Equal(2, removedCount);
+        Assert.Empty(_spooler.Ports);
+    }
+
+    [Fact]
+    public void GetPhantomPrinters_ExcludesRealPrinters()
+    {
+        _spooler.Drivers.Add(new InstalledDriver("driver", "SomeProvider", "SomeManufacturer", 3, "Windows x64"));
+        _spooler.Printers.Add(new SpoolerPrinter("Phantom printer", "driver", "altec port", IPhantomPrinterService.PhantomComment));
+        _spooler.Printers.Add(new SpoolerPrinter("printer", "driver", "USB", "Desktop printer"));
+    
+        var phantomPrinters = _service.GetPhantomPrinters();
+    
+        Assert.Single(phantomPrinters);
+        Assert.Contains(phantomPrinters, p => p.Name == "Phantom printer");
+    }
 
     private sealed class FakeSpooler : IWin32PrintSpooler
     {
